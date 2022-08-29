@@ -1,0 +1,74 @@
+define			 = -DPOSRES
+integrator               = md
+dt                       = 0.002
+nsteps                   = 100000
+
+; cutoffs
+rlist                    = 1.0
+rcoulomb                 = 1.4 ; changed from 1.0 to 1.4, because new Verlet cutoff scheme (old one was called group)  doesn't allow rvdw != rcoulomb. rcoulomb is tuned during the run, the same as rlist
+rvdw                     = 1.4
+rlistlong		 = 1.4
+
+vdwtype                  = cutoff
+DispCorr		 = EnerPres		; energy and pressure!
+
+; electrostatics
+coulombtype              = PME
+fourierspacing	 	 = 0.12			; max. spacing for the FFT grid
+pme_order		 = 4			; interpolation order
+ewald_geometry		 = 3d
+ewald_rtol		 = 1e-5
+optimize_fft		 = no
+
+; Temperature coupling
+tcoupl	 		 = v-rescale
+tc-grps                  = system
+tau_t                    = 0.1
+ref_t                    = 300
+nsttcouple		 = 10		; equals nstlist! 
+
+; Pressure coupling
+pcoupl			 = berendsen
+pcoupltype		 = isotropic
+ref_p			 = 1.0 
+tau_p                    = 1.0
+compressibility          = 4.5e-5		; water at 300K-1atm, in [bar^-1] 
+nstpcouple 		 = 10			;equals ntlist when -1!
+refcoord_scaling	 = com			; no|all|com
+
+; Constraints
+constraint-algorithm     = Lincs
+constraints              = allbonds
+lincs_order		 = 4
+lincs_iter		 = 1
+lincs_warnangle		 = 30
+
+; .xtc options
+nstxtcout                = 5000
+xtc_precision		 = 1000
+xtc_grps                 = system 
+
+; .edr options
+nstenergy		 = 50
+energygrps               = System
+
+; .trr options
+nstxout                  = 0
+nstvout                  = 0
+nstfout                  = 0
+nstlog                   = 20000
+
+; neighbour searching
+nstlist                  = 10
+ns_type                  = grid
+pbc                      = xyz
+nstcalcenergy	         = 10 ; equals nstlist when -1!
+
+; center of mass motion removal 
+comm_grps                = system
+nstcomm                  = 10
+
+; GENERATE VELOCITIES FOR STARTUP RUN
+gen_vel                  = yes
+gen_temp		 = 300
+continuation		 = no
