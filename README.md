@@ -13,8 +13,16 @@ https://sawade.io/H1Ub_in_chromatosomes/
 # Software versions
 
 Python packages in `requirements.txt`.
+
 Molsim: Gromacs2016.3 and Gromacs2021.2
+
 Visualization: vmd1.9.3
+
+Isopeptide bond and rotamer generation: UCSF Chimera 1.16
+
+Sketch-map version: https://github.com/lab-cosmo/sketchmap/tree/b7aa957bf3bf764854ce309b98f68e869f080916
+
+
 
 # Scripts
 
