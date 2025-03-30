@@ -8,7 +8,7 @@
 https://github.com/AG-Peter/H1Ub_in_chromatosomes
 
 **Simulations**
-https://sawade.io/H1Ub_in_chromatosomes/
+https://dx.doi.org/10.48606/99
 
 # Software versions
 
